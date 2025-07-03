@@ -1,4 +1,5 @@
 #! /bin/bash
+make
 
 if ! [[ -x wunzip ]]; then
     echo "wunzip executable does not exist"
