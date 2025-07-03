@@ -17,19 +17,21 @@ int concatenate(FILE* stream1, FILE* stream2) {
         
         // Invalid input
         fprintf(stderr, "wcat: invalid input files\n");
-        return SUCCESS;
+        return ERROR;
     }
     
     // Initialize buffer
     char buffer[BUFFER_SIZE];
     
     // Read stream 2 until end is reached
-    while (fgets(buffer, BUFFER_SIZE, stream2) != NULL) {
+    while (fgets(buffer, BUFFER_SIZE, stream2)) {
         
         // Write contents to the end of stream 1
         fputs(buffer, stream1);
     } 
-    return ERROR; 
+    
+    // Successfully concatenated
+    return SUCCESS; 
 }
 
 // Main function
@@ -50,7 +52,7 @@ int main(int argc, char *argv[]) {
         if (!file) { 
             
             // Input file could not be opened
-            fprintf(stdout, "wcat: cannot open file '%s'\n", filepath); 
+            fprintf(stdout, "wcat: cannot open file\n"); 
             return ERROR; 
         }
         
